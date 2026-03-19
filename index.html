@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benjamin Victoria | Full Stack Developer</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f7f9f9;
+  --white: #ffffff;
+  --accent: #4db6ac;
+  --gray: #888;
+  --dark-bg: #101010;
+  --dark-text: #e5e5e5;
+  --transition-speed: 0.5s;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Exo 2', sans-serif;
+  background: var(--bg);
+  color:#222;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+body.dark{background: var(--dark-bg); color: var(--dark-text);}
+
+/* Theme toggle */
+#theme-toggle{
+  position: fixed; top:20px; right:20px;
+  background: var(--accent); border:none; border-radius:50%;
+  padding:0.5rem; cursor:pointer; font-size:1.2rem; z-index:1000;
+  transition: transform 0.3s;
+}
+#theme-toggle:hover{transform:scale(1.1);}
+
+/* Hero */
+.hero{
+  display:flex; flex-wrap:wrap;
+  min-height:100vh; padding:2rem;
+  position:relative; overflow:hidden;
+}
+.hero-text{
+  flex:1 1 400px; display:flex; flex-direction:column; justify-content:center;
+}
+.hero-text h1{
+  font-family:'Rajdhani', sans-serif; font-size:4rem; color: var(--accent);
+  margin-bottom:1rem; opacity:0; transform:translateX(-30px);
+  animation: slideInLeft 1s forwards;
+}
+.hero-text h2{
+  font-family:'Rajdhani', sans-serif; font-size:2rem; margin-bottom:1rem;
+  opacity:0; transform:translateX(-30px);
+  animation: slideInLeft 1s 0.3s forwards;
+}
+.hero-text p{
+  font-size:1.2rem; max-width:500px; line-height:1.5;
+  opacity:0; transform:translateX(-30px);
+  animation: slideInLeft 1s 0.6s forwards;
+}
+
+/* Floating shapes */
+.hero-shapes{
+  flex:1 1 300px; position:relative; min-height:300px;
+}
+.shape{
+  position:absolute; border-radius:50%; opacity:0.2;
+  animation: float 6s infinite alternate ease-in-out;
+}
+.shape:nth-child(1){width:80px; height:80px; background:var(--accent); top:20%; left:70%; animation-delay:0s;}
+.shape:nth-child(2){width:50px; height:50px; background:#1abc9c; top:50%; left:50%; animation-delay:2s;}
+.shape:nth-child(3){width:100px; height:100px; background:#26a69a; top:70%; left:20%; animation-delay:4s;}
+@keyframes float{0%{transform:translateY(0px)}100%{transform:translateY(-30px)}}
+@keyframes slideInLeft{to{opacity:1; transform:translateX(0);}}
+
+/* Sections */
+section{padding:6rem 2rem; max-width:1000px; margin:0 auto;}
+.section-title{font-family:'Rajdhani',sans-serif;font-size:2.5rem;color:var(--accent);margin-bottom:2rem;}
+
+/* About */
+.about p{font-size:1.15rem; line-height:1.7; max-width:700px;}
+
+/* Skills radial */
+.skills-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:2rem; justify-items:center;
+}
+.skill-card{
+  position:relative; width:150px; height:150px; display:flex; align-items:center; justify-content:center;
+  border-radius:50%; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.05);
+  opacity:0; transform:scale(0.8); transition:transform 0.3s;
+}
+.skill-card.visible{opacity:1; transform:scale(1);}
+.skill-card:hover{transform:scale(1.05);}
+.skill-card svg{position:absolute; transform:rotate(-90deg);}
+.skill-card circle{fill:none; stroke:#ddd; stroke-width:10;}
+.skill-card .progress{stroke:var(--accent); stroke-dasharray:314; stroke-dashoffset:314; stroke-linecap:round; transition:stroke-dashoffset 1s ease;}
+.skill-card span{position:absolute;font-weight:600;font-family:'Rajdhani',sans-serif;}
+
+/* Projects */
+.projects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem;}
+.project-card{
+  background:#fff; padding:1.5rem; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.05);
+  opacity:0; transform:translateY(30px); transition:transform 0.3s;
+}
+.project-card.visible{opacity:1; transform:translateY(0);}
+.project-card:hover{transform:translateY(-5px); box-shadow:0 12px 24px rgba(0,0,0,0.1);}
+.project-card h3{font-family:'Rajdhani',sans-serif;color:var(--accent); margin-bottom:0.5rem;}
+
+/* Contact */
+.contact-form{display:flex; flex-direction:column; gap:1rem;}
+.contact-form input,.contact-form textarea{padding:0.8rem;border-radius:6px;border:1px solid #ccc;transition:border-color 0.3s;}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent);outline:none;}
+.contact-form button{background:var(--accent); color:#fff;padding:0.8rem 1.5rem;border:none;border-radius:6px;cursor:pointer;font-weight:600; transition:background 0.3s;}
+.contact-form button:hover{background:#2c7a74;}
+
+@media(max-width:600px){.hero h1{font-size:2.5rem;} .hero h2{font-size:1.5rem;} .hero p{font-size:1rem;} .section-title{font-size:2rem;}}
+</style>
+</head>
+<body>
+
+<button id="theme-toggle">🌙</button>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-text">
+    <h1>Benjamin Victoria</h1>
+    <h2>Full Stack Developer</h2>
+    <p>Futuristic, layered, and interactive web experiences that impress and perform.</p>
+  </div>
+  <div class="hero-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+</header>
+
+<!-- About -->
+<section class="about">
+  <h2 class="section-title">About Me</h2>
+  <p>Over 10 years creating cutting-edge full stack solutions. I specialize in modern web interfaces, scalable architectures, and interactive experiences that stand out.</p>
+</section>
+
+<!-- Skills -->
+<section class="skills">
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <svg width="150" height="150"><circle cx="75" cy="75" r="50"/><circle class="progress" cx="75" cy="75" r="50"/></svg>
+      <span>JS 90%</span>
+    </div>
+    <div class="skill-card">
+      <svg width="150" height="150"><circle cx="75" cy="75" r="50"/><circle class="progress" cx="75" cy="75" r="50"/></svg>
+      <span>React 85%</span>
+    </div>
+    <div class="skill-card">
+      <svg width="150" height="150"><circle cx="75" cy="75" r="50"/><circle class="progress" cx="75" cy="75" r="50"/></svg>
+      <span>Node 80%</span>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>Project One</h3>
+      <p>Enterprise workflow app</p>
+      <span>React, Node.js</span><br>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <h3>Project Two</h3>
+      <p>Real-time analytics dashboard</p>
+      <span>Vue, D3.js</span><br>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <h3>Project Three</h3>
+      <p>Custom e-commerce platform</p>
+      <span>Next.js, PostgreSQL</span><br>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact">
+  <h2 class="section-title">Get In Touch</h2>
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" rows="4" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<script>
+const themeToggle=document.getElementById('theme-toggle');
+themeToggle.addEventListener('click',()=>{document.body.classList.toggle('dark'); themeToggle.textContent=document.body.classList.contains('dark')?'☀️':'🌙';});
+
+// Skill radial animation
+const skillCards=document.querySelectorAll('.skill-card');
+function animateSkills(){
+  const trigger=window.innerHeight*0.85;
+  skillCards.forEach(card=>{
+    const top=card.getBoundingClientRect().top;
+    if(top<trigger){
+      card.classList.add('visible');
+      const circle=card.querySelector('.progress');
+      circle.style.strokeDashoffset=314*(1-parseInt(card.querySelector('span').textContent.match(/\d+/))/100);
+    }
+  });
+}
+window.addEventListener('scroll',animateSkills);
+window.addEventListener('load',animateSkills);
+
+// Projects reveal
+const projects=document.querySelectorAll('.project-card');
+function revealProjects(){
+  const trigger=window.innerHeight*0.85;
+  projects.forEach(p=>{
+    if(p.getBoundingClientRect().top<trigger)p.classList.add('visible');
+  });
+}
+window.addEventListener('scroll',revealProjects);
+window.addEventListener('load',revealProjects);
+</script>
+
+</body>
+</html>
